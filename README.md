@@ -23,3 +23,6 @@ Audio functionality has not been tested yet.
 
 ## Configuration
 Update the ESPHome YAML configuration file with your specific sensor setup and display preferences.
+
+## License
+MIT (see `LICENSE`).
