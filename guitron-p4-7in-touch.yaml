@@ -488,20 +488,11 @@ media_player:
 micro_wake_word:
   id: my_wake_word
   models:
-    - model: github://esphome/micro-wake-word-models/models/v2/experiments/choo_choo_homie.json@main
-    - model: github://esphome/micro-wake-word-models/models/v2/experiments/hey_home_assistant.json@main
-    - model: github://esphome/micro-wake-word-models/models/v2/experiments/okay_computer.json@main
     - model: alexa
-  # vad:
-  #   model: https://github.com/kahrendt/microWakeWord/releases/download/v2.1_models/vad.json
-  # models:
-  #   - model: https://github.com/kahrendt/microWakeWord/releases/download/v2.1_models/okay_nabu.json
-  #   - model: https://github.com/kahrendt/microWakeWord/releases/download/v2.1_models/alexa.json
-  #   - model: https://github.com/kahrendt/microWakeWord/releases/download/v2.1_models/hey_jarvis.json
-  #   - model: https://github.com/kahrendt/microWakeWord/releases/download/v2.1_models/hey_mycroft.json
   on_wake_word_detected:
     then:
       - logger.log: "Wake word detected"
+      # Mute the speakers so it doesn't interfere with the assistant's audio
       - homeassistant.action:
           action: media_player.volume_mute
           data:
@@ -509,10 +500,6 @@ micro_wake_word:
             is_volume_muted: "true"
       - voice_assistant.start:
           wake_word: !lambda return wake_word;
-
-# file:
-#   - id: id_what
-#     file: what.play_mp3
 
 voice_assistant:
   microphone: esp32_microphone
@@ -535,6 +522,7 @@ voice_assistant:
                 media_player.is_announcing:
             - not:
                 media_player.is_playing:
+    # Unmute the speakers once the assistant has finished
     - homeassistant.action:
         action: media_player.volume_mute
         data:
