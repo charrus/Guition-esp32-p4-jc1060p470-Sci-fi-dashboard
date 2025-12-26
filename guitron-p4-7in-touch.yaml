@@ -20,8 +20,6 @@ esphome:
   friendly_name: ${friendly_name}
   build_path: /config/esphome/build/${device_internal_name}
   area: Lounge
-  # platformio_options:
-  #   board_upload.maximum_ram_size: 327680
   on_boot:
     then:
       # read the RTC time once when the system boots
@@ -36,7 +34,7 @@ esp32:
     advanced:
       enable_idf_experimental_features: true
     sdkconfig_options:
-      CONFIG_SPIRAM_XIP_FROM_PSRAM: y
+      CONFIG_SPIRAM_XIP_FROM_PSRAM: y   # Stop screen flashing during OTA
   
 esp32_hosted:
   variant: esp32c6
