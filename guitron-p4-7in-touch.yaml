@@ -366,7 +366,7 @@ audio_adc:
   - platform: es7210
     id: es7210_adc
     i2c_id: bus_a
-    address: 0x32
+    address: 0x36
 
 microphone:
   - platform: i2s_audio
