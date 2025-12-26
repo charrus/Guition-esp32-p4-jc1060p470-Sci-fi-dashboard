@@ -385,7 +385,7 @@ speaker:
     i2s_dout_pin: GPIO9
     audio_dac: es8311_dac
     dac_type: external
-    channel: left
+    channel: mono
     buffer_duration: 100ms
     bits_per_sample: 16bit
     sample_rate: 48000
@@ -596,7 +596,7 @@ touchscreen:
     id: my_touchscreen
     i2c_id: bus_a
     reset_pin: GPIO22
-    update_interval: 50ms
+    interrupt_pin: GPIO21
     transform:
       swap_xy: true
       mirror_x: false
